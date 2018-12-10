@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Agregar Pregunta</title>
+    </h:head>
+    <h:body>            
+        <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Respuesta" showEffect="clip">
+            
+        </p:dialog>    
+        
+        <p:growl id="msg"/>
+        
+        <h:form id="form">
+            <p:panel id="Pregunta" header="Nueva Pregunta"  style="margin-bottom:20px">
+            Pregunta....... <p:inputText id="txtPregunta"/>
+            <br/>
+            Alternativa1... <p:inputText id="txtAlt1"/>
+            <br/>
+            Alternativa2... <p:inputText id="txtAlt2"/>
+            <br/>
+            Alternativa3... <p:inputText id="txtAlt3"/>
+            <br/>
+            Alternativa4... <p:inputText id="txtAlt4"/>
+            <br/>
+            Respuesta..... <p:inputText id="txtRespuesta"/>
+            <br/>
+            <h:commandButton value="Guardar" action="#{bean.crearPregunta()}"/>
+            <br/>
+            <h:button value = "Salir" outcome="index"></h:button>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Respuesta" showEffect="clip">
+        <p:panelGrid columns="2" id="display" columnClasses="label,value">
+            <h:outputText value="Respuesta" />
+            <h:outputText value="#{bean.respuestaJugador}" />
+        </p:panelGrid>
+    </p:dialog>
+        
+            <p:growl id="msg"/>
+            
+            <p:panel id="Pregunta" header="Listado de preguntas"  style="margin-bottom:20px">
+                        <p:dataTable value="#{bean.preguntas}" var="pre" editable="true"
+                filteredValue="#{bean.filtroPreguntas}" emptyMessage="Sin Coincidencia" >
+                <p:ajax event="rowEdit" listener="#{bean.actualizar}" update=":form:msg"/>
+                <p:ajax event="rowEditCancel" listener="#{bean.cancelar}" update=":form:msg"/>
+
+               <p:column headerText="SELECCION">
+                   <h:selectBooleanCheckbox value="#{pre.selected}"/>
+               </p:column>
+
+               <p:column headerText="NUMERO" filterBy="#{pre.numero}" filterMatchMode="contains">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.numero}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.numero}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column headerText="PREGUNTA">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.pregunta}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.pregunta}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column headerText="ALTERNATIVA 1">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.alt1}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.alt1}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column headerText="ALTERNATIVA 2">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.alt2}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.alt2}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column headerText="ALTERNATIVA 3">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.alt3}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.alt3}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column headerText="ALTERNATIVA 4">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.alt4}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.alt4}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column headerText="RESPUESTA">
+                   <p:cellEditor>
+                       <f:facet name="output">
+                           <h:outputText value="#{pre.respuesta}"/>
+                       </f:facet>
+                       <f:facet name="input">
+                           <p:inputText value="#{bean.respuesta}"/>
+                       </f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column>
+                   <p:rowEditor/>
+               </p:column>
+                
+            </p:dataTable>
+            
+            <br/>
+            <p:commandButton value="Eliminar" actionListener="#{bean.eliminar}"
+                             update ="form" icon="ui-icon-trash">
+                <p:confirm message = "¿Seguro de eliminar?" header ="Aviso" icon="ui-icon-alert"/>
+            </p:commandButton>
+            
+            <p:confirmDialog global="true">
+                <p:commandButton value="Si" type="button" icon="ui-icon-check"
+                                 styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="No" type="button" icon="ui-icon-close"
+                                 styleClass="ui-confirmdialog-no"/>
+            </p:confirmDialog>
+            <br/>
+            <h:button value = "Salir" outcome="index" ></h:button>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+
